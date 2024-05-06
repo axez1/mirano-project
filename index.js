@@ -52,18 +52,22 @@ choices.forEach((choice) => {
   const btn = choice.querySelector('.choices__btn');
   const box = choice.querySelector('.choices__box');
   
-  btn.addEventListener('click', function() {
-      if(document.querySelector('.choices__box.choices__box_open')) {
-        document.querySelector('.choices__box.choices__box_open').classList.remove('choices__box_open');
-      }
+  btn.addEventListener('click', () => {
       box.classList.toggle('choices__box_open');
+
+      choices.forEach(otherChoice => {
+        if(otherChoice !== choice) {
+          otherChoice.querySelector('.choices__box').classList.remove('choices__box_open');
+        }
+      })
+
       adjustElementPosition(box);
-  })
+  });
   
   window.addEventListener('resize', function() {
     adjustElementPosition(box);
   });
-}) 
+});
 
 const headerCartBtn = document.querySelector('.header__cart-button');
 const cartBtn = document.querySelector('.cart__close');
@@ -76,6 +80,3 @@ headerCartBtn.onclick = () => {
 cartBtn.addEventListener('click', function() {
   cartSection.classList.remove('cart_hidden');
 });
-
-//choices__box
-//choices__btn
