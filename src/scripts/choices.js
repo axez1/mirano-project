@@ -31,6 +31,16 @@ export const initChoices = () => {
 
   const choices = document.querySelectorAll('.choices');
 
+  const closeAllChoices = ({target}) => {
+    let clickInside = target.closest('.choices');
+    if(!clickInside) {
+      choices.forEach(choice => {
+        choice.querySelector('.choices__box').classList.remove('choices__box_open');
+      })
+      document.removeEventListener('click', closeAllChoices);
+    }
+  };
+
   choices.forEach((choice) => {
     const btn = choice.querySelector('.choices__btn');
     const box = choice.querySelector('.choices__box');
@@ -43,6 +53,12 @@ export const initChoices = () => {
             otherChoice.querySelector('.choices__box').classList.remove('choices__box_open');
           }
         })
+
+        if(box.classList.contains('choices__box_open')) {
+          document.addEventListener('click', closeAllChoices);
+        } else {
+          document.removeEventListener('click', closeAllChoices);
+        }
   
         adjustElementPosition(box);
     });
@@ -50,5 +66,6 @@ export const initChoices = () => {
     window.addEventListener('resize', debounce(() => {
       adjustElementPosition(box);
     }));
+
   });
 }
