@@ -1,4 +1,3 @@
-import { Value } from "sass";
 import { store } from "./Store";
 
 const formatQueryString = params => {

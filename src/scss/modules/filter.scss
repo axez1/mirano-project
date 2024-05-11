@@ -142,6 +142,10 @@
 
   &__button {
     white-space: nowrap;
+
+    &:hover {
+      color: $orange;
+    }
   }
 
 
