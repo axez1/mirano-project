@@ -1,19 +1,33 @@
-export const initCart = () => {
-  const headerCartBtn = document.querySelector('.header__cart-button');
-  const cartBtn = document.querySelector('.cart__close');
-  const cartSection = document.querySelector('.cart');
+import { renderCart } from "./renderCart";
+import { cartStore } from "./Store";
 
-  const toggleCart = () => {
-    cartSection.classList.toggle('cart_hidden');
+const headerCartBtn = document.querySelector('.header__cart-button');
+const cartBtn = document.querySelector('.cart__close');
+const cartSection = document.querySelector('.cart');
 
-    if(cartSection.classList.contains('cart_hidden') && window.innerWidth > 1360) {
-      cartSection.scrollIntoView({behavior: 'smooth'});
-    }
+const toggleCart = () => {
+  
+  cartSection.classList.toggle('cart_hidden');
+
+  if(cartSection.classList.contains('cart_hidden') && window.innerWidth > 1360) {
+    cartSection.scrollIntoView({behavior: 'smooth'});
   }
+}
+
+export const initCart = async () => {
+  await cartStore.init();
+
+  headerCartBtn.textContent = cartStore.getCart().length;
 
   headerCartBtn.addEventListener('click', toggleCart);
 
+  renderCart();
+
+  cartStore.subscribe(() => {
+    headerCartBtn.textContent = cartStore.getCart().length;
+  })
+
   cartBtn.addEventListener('click', () => {
-  cartSection.classList.remove('cart_hidden');
-});
+    cartSection.classList.remove('cart_hidden');
+  });
 }
