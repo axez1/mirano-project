@@ -11,7 +11,7 @@ const formatQueryString = params => {
   return `?${searchParams.toString()}`;
 }
 
-export const  API_URL = 'https://mirano-project.onrender.com';
+export const  API_URL = 'https://mirano-api-r11e.onrender.com';
 
 export const fetchProducts = async (params = {}) => {
   try {
