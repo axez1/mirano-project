@@ -11,7 +11,7 @@ const formatQueryString = params => {
   return `?${searchParams.toString()}`;
 }
 
-export const  API_URL = 'https://wooded-flying-asteroid.glitch.me';
+export const  API_URL = 'https://mirano-project.onrender.com';
 
 export const fetchProducts = async (params = {}) => {
   try {
