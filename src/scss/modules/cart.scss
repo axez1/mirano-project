@@ -160,6 +160,11 @@
     padding: 9px 16px 8px 16px;
     background-color: $light-orange;
     color: $white;
+
+    &:disabled {
+      background-color: #ccc;
+      opacity: 0.4;
+    }
   }
 
   

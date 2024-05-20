@@ -7,6 +7,7 @@ import { fetchProducts } from './scripts/API';
 import { initChoicesType } from './scripts/choicesType';
 import { filterProducts } from './scripts/filterProducts';
 import { initSearchProducts } from './scripts/searchProducts';
+import { initOrder } from './scripts/orderController';
 
 
 const init = () => {
@@ -18,6 +19,7 @@ const init = () => {
   renderProducts();
   filterProducts();
   initSearchProducts();
+  initOrder();
 }
 
 init();
